@@ -40,14 +40,36 @@
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
-                                        <th>Rendering engine</th>
-                                        <th>Browser</th>
-                                        <th>Platform(s)</th>
-                                        <th>Engine version</th>
-                                        <th>CSS grade</th>
+                                        <th>시나리오명</th>
+                                        <th>테스트시나리오 ID</th>
+                                        <th>테스트시나리오명</th>
+                                        <th>테스트 유형</th>
+                                        <th>차수</th>
+                                        <th>테스터</th>
+                                        <th>시작일</th>
+                                        <th>종료일</th>
+                                        <th>시작일</th>
+                                        <th>종료일</th>
+                                        <th>테스트 결과</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                  <% data.forEach(function(e)){ %>
+                                    <tr>
+                                      <td><%= e.scenario_name %></td>
+                                      <td><%= e.scenario_id %></td>
+                                      <td><%= e.scenario_name2 %></td>
+                                      <td><%= e.scenario_type %></td>
+                                      <td><%= e.scenario_num %></td>
+                                      <td><%= e.tester %></td>
+                                      <td><%= e.startDate %></td>
+                                      <td><%= e.endDate %></td>
+                                      <td><%= e.startDate2 %></td>
+                                      <td><%= e.endDate2 %></td>
+                                      <td><%= e.result %></td>
+                                    </tr>
+                                  <% } %>
+                                  <!--
                                     <tr class="odd gradeX">
                                         <td>Trident</td>
                                         <td>Internet Explorer 4.0</td>
@@ -447,7 +469,7 @@
                                         <td>-</td>
                                         <td class="center">-</td>
                                         <td class="center">U</td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
 

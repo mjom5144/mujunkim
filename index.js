@@ -43,7 +43,7 @@ app.get("/reqScreen_RegTestScenario", function(req, res) {
 });
 // 시나리오 등록
 app.post("/req_regTestScenario", function(req, res){
-  console.log(req.body);
+  //console.log(req.body);
   // 삽입
   var isCritical;
   if(req.body.isCritical == 'on') isCritical = true;
@@ -65,12 +65,12 @@ app.post("/req_regTestScenario", function(req, res){
     if(err){
       console.log(err);
     } else{
-      console.log('rows', rows);
+      console.log('rows', rows[0].ID);
       //console.log('fields', fields);
+      res.render("lists_testScenario", {data:rows});
     }
   });
-  res.redirect("/reqScreen_RegTestScenario");
-  //res.redirect("/lists_testScinario");
+  //res.redirect("/reqScreen_RegTestScenario");
 });
 // 테스트 결과 등록 페이지 호툴
 app.get("/reqScreen_RegTestResult", function(req, res) {
