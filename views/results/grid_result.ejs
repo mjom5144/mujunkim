@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <% include ../partials/head %>
+    <!-- DataTables CSS -->
+    <link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+    <!-- DataTables Responsive CSS -->
+    <link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+    <!-- jq grid -->
+    <link rel="stylesheet" type="text/css" media="screen" href="../jqGrid/css/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../jqGrid/css/ui.jqgrid.css" />
+
+    <style media="screen">
+    .ui-th-column-header
+    {
+    text-align: center;
+    }
+    </style>
+
+
+</head>
+
+<body>
+
+  <% include ../partials/commonjs %>
+  <!-- DataTables JavaScript -->
+  <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
+  <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+  <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+  <!-- jq grid -->
+  <script src="../jqGrid/js/jquery-ui.js"></script>
+  <script src="../jqGrid/js/jquery.jqGrid.min.js"></script>
+
+  <script>
+  $(document).ready(function() {
+    $("#testResult_list").jqGrid({
+          //ajax 호출할 페이지
+          url:'',
+          mtype : 'POST',
+          datatype: "json",
+          colNames:[
+            '시나리오 ID',
+            '시나리오 명',
+            '시나리오 유형',
+            '개발자',
+            '테스터',
+            '차수',
+            '시작일',
+            '종료일',
+            '테스트 유무',
+            '테스트 결과',
+            '테스트 결과 등록일'
+          ],
+          colModel:[
+              {name:'scenario_id', index:'scenario_id'},
+              {name:'scenario_name', index:'scenario_name'},
+              {name:'scenario_type', index:'scenario_type'},
+              {name:'dev_id', index:'dev_id'},
+              {name:'tester_id', index:'tester_id'},
+              {name:'degree', index:'degree'},
+              {name:'startDate', index:'startDate'},
+              {name:'endDate', index:'endDate'},
+              {name:'test_yn', index:'test_yn'},
+              {name:'teResult_crtn', index:'teResult_crtn'},
+              {name:'teResult_crtn', index:'teResult_crtn'}
+          ],
+          height : 'auto',
+          rowNum : 10,
+          autowidth : true,
+          sortable : true,
+          gridview : true
+      }); // jqGrid()
+
+      $("#testResult_list").jqGrid('setGroupHeaders', {
+        useColSpanStyle: true,
+        groupHeaders:[
+          {startColumnName: 'startDate', numberOfColumns: 2, titleText: '테스트 계획', align:'center'}
+        ]
+      });
+
+
+  }); // ready()
+
+  </script>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <% include ../partials/nav %>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">테스트 결과 관리</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+                <div class="col-lg-12">
+
+                  <input type="button" value="초기화">
+                  <input type="button" value="조회">
+
+                    <div class="panel panel-default">
+
+                      <!-- 시나리오 관리 검색 조건 폼 -->
+                      <form class="form-inline">
+                        <div class="form-group">
+                          <label for="exampleInputType">차수</label>
+                          <select class="form-control">
+                            <option value="1">1차</option>
+                        	  <option value="2">2차</option>
+                            <option value="2">3차</option>
+                            <option value="2">4차</option>
+                            <option value="2">5차</option>
+                        	</select>
+                          <input type="text" class="form-control" id="degreeDate" style="margin-right: 50px;" readonly="true">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputName2">시나리오 ID</label>
+                          <input type="text" class="form-control" id="exampleInputName2" style="margin-right: 50px;">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputEmail2">시나리오 명</label>
+                          <input type="text" class="form-control" id="exampleInputEmail2" style="margin-right: 50px;">
+                        </div>
+
+                        <br>
+                        <br>
+
+                        <div class="form-group" style="margin-right: 165px;">
+                          <label for="exampleInputType">시나리오 유형</label>
+                          <select class="form-control">
+                            <option value="1">단위화면</option>
+                        	  <option value="2">전체화면</option>
+                        	</select>
+                        </div>
+
+                        <div class="form-group" style="margin-right: 195px;">
+                          <label for="exampleInputType">테스트 유/무</label>
+                          <select class="form-control">
+                            <option value="y">유</option>
+                        	  <option value="n">무</option>
+                        	</select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="exampleInputType">테스트 결과</label>
+                          <select class="form-control">
+                            <option value="y">성공</option>
+                        	  <option value="n">실패</option>
+                        	</select>
+                        </div>
+
+                      </form>
+
+                      <br>
+
+                      <!-- 그리드 검색 버튼 -->
+                      <input type="button" value="등록">
+
+                      <!-- 그리드 -->
+                      <table width="100%" id="testResult_list">
+                      </table>
+
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+</body>
+
+</html>

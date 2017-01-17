@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <% include ../../partials/head %>
+
+</head>
+
+<body>
+  <% include ../../partials/commonjs %>
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <% include ../../partials/nav %>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">테스트 결과 등록</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+
+            <!-- 시나리오 등록 폼 -->
+
+            <div class="container">
+              <form class="registerForm" action="/results/manage/register/<%= data.ID %>/<%= data.DE_NM %>?_method=put" method="post">
+                <table class="table table-bordered">
+                    <tr>
+                      <td>시나리오 ID</td>
+                      <td><%= data.ID %></td>
+                      <td>시나리오명</td>
+                      <td><%= data.NAME %></td>
+                    </tr>
+                    <tr>
+                      <td>시나리오 유형</td>
+                      <td><%= data.TYPE_CD %></td>
+                      <td>차수</td>
+                      <td><%= data.DE_NM %></td>
+                    </tr>
+                    <tr>
+                      <td>개발자</td>
+                      <td><%= data.DEVELOPER_ID %></td>
+                      <td>시작일</td>
+                      <td><%= data.DE_SD %></td>
+                    </tr>
+                    <tr>
+                      <td>테스터</td>
+                      <td><input type="text" name="tester" value="<%= data.TESTER_ID %>"></td>
+                      <td>종료일</td>
+                      <td><%= data.DE_ED %></td>
+                    </tr>
+                    <tr>
+                        <td colspan="8"></td>
+                    </tr>
+                    <tr>
+                      <td>테스트 유/무</td>
+                      <td>
+                        <div id="div_scenario_type">
+                         <select name="isTested">
+                          <option value="">-</option>
+                          <option value="0">미수행</option>
+                          <option value="1">수행</option>
+                         </select>
+                       </div>
+                      </td>
+                      <td>테스트 결과</td>
+                      <td>
+                        <div id="div_scenario_type">
+                         <select name="result">
+                          <option value="">-</option>
+                          <option value="false">실패</option>
+                          <option value="true">성공</option>
+                         </select>
+                       </div>
+                      </td>
+                      <td>결과 등록일</td>
+                      <td><input type="date" name="date_register"></td>
+                    </tr>
+                    <tr>
+                      <td>결함 내용</td>
+                      <td>
+                        <textarea class="form-control" rows="5" name="defectsDetail"></textarea>
+                      </td>
+                    </tr>
+                </table>
+
+                <button type="reset" name="resetForm" value="초기화"></button>
+                <button type="submit" name="registration" value="등록"></button>
+                <a href="/results/manage"><input type="button" name="goToLists" value="취소"></a>
+              </form>
+			      </div>
+            <!-- // 시나리오 등록 폼 -->
+            <div class="">
+              <table border="1" cellpadding="0" cellspacing="10" bordercolor="black">
+                <tr> 테스트 로그 </tr>
+                <tr>
+                  <td>
+                    <textarea name="name" rows="10" cols="200"></textarea>
+                  </td>
+                </tr>
+              </table>
+            </div>
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+</body>
+
+</html>

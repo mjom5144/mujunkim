@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <% include ../../partials/head %>
+
+</head>
+
+<body>
+  <% include ../../partials/commonjs %>
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <% include ../../partials/nav %>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">차수 상세</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+
+            <!-- 시나리오 등록 폼 -->
+
+            <div class="container">
+              <!-- <form class="registerForm" action="/req_regTestDegree" method="post"> -->
+                <table class="table table-bordered">
+                    <tr>
+                      <td>차수명</td>
+                      <td><%= data.DE_NM %></td>
+                    </tr>
+                    <tr>
+                      <td>시작일</td>
+                      <td><%= data.DE_SD %></td>
+                    </tr>
+                    <tr>
+                      <td>종료일</td>
+                      <td><%= data.DE_ED %></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>설명</td>
+                      <td colspan="4">
+                        <textarea class="form-control" rows="5" name="description_degree" readonly><%= data.DESCRIPTION %></textarea>
+                      </td>
+                    </tr>
+                </table>
+
+                <a href="/degrees/manage/detail/<%= data.DE_NM %>/edit"><input type="button" name="registration" value="수정"></a>
+                <a href="#"><input type="button" name="delete" value="삭제"></a>
+                <a href="/degrees/manage"><input type="button" name="goToLists" value="목록"></a>
+              <!-- </form> -->
+
+			      </div>
+            <!-- // 시나리오 등록 폼 -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+</body>
+
+</html>

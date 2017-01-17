@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <% include ../../partials/head %>
+    <!-- DataTables CSS -->
+    <link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+    <!-- DataTables Responsive CSS -->
+    <link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+    <!-- jq grid -->
+    <link rel="stylesheet" type="text/css" media="screen" href="../jqGrid/css/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../jqGrid/css/ui.jqgrid.css" />
+
+
+</head>
+
+<body>
+
+  <% include ../../partials/commonjs %>
+  <!-- DataTables JavaScript -->
+  <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
+  <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+  <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+  <!-- jq grid -->
+  <script src="../jqGrid/js/jquery-ui.js"></script>
+  <script src="../jqGrid/js/jquery.jqGrid.min.js"></script>
+
+  <script>
+  $(document).ready(function() {
+    $("#scenario_list").jqGrid({
+          //ajax 호출할 페이지
+          url:'',
+          mtype : 'POST',
+          datatype: "json",
+          colNames:[
+            '시나리오 ID',
+            '시나리오 명',
+            '시나리오 유형',
+            '등록자','개발자',
+            '시나리오 개요'
+          ],
+          colModel:[
+              {name:'ID'},
+              {name:'NAME'},
+              {name:'TYPE_CD'},
+              {name:'CREATE_ID'},
+              {name:'DEVELOPER_ID'},
+              {name:'SUMMARY'}
+          ],
+          height : 'auto',
+          rowNum : 10,
+          autowidth : true,
+          sortable : true,
+          gridview : true
+      }); // jqGrid()
+  }); // ready()
+
+  </script>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <% include ../../partials/nav %>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">시나리오 관리</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+                <div class="col-lg-12">
+
+                  <input type="button" value="초기화">
+                  <input type="button" value="조회">
+
+                    <div class="panel panel-default">
+
+                      <!-- 시나리오 관리 검색 조건 폼 -->
+                      <form class="form-inline">
+                        <div class="form-group" style="margin-right: 50px;">
+                          <label for="exampleInputName2">시나리오 ID</label>
+                          <input type="text" class="form-control" id="exampleInputName2">
+                        </div>
+                        <div class="form-group" style="margin-right: 50px;">
+                          <label for="exampleInputEmail2">시나리오 명</label>
+                          <input type="text" class="form-control" id="exampleInputEmail2">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputType">시나리오 유형</label>
+                          <select class="form-control">
+                            <option value="1">단위화면</option>
+                        	  <option value="2">전체화면</option>
+                        	</select>
+                        </div>
+                        <br>
+                        <br>
+
+                        <div class="form-group" style="margin-right: 55px;">
+                          <label for="exampleInputEmail2">등록자 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                          <input type="text" class="form-control" id="exampleInputEmail2">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputType">개발자 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                          <input type="text" class="form-control" id="exampleInputType">
+                        </div>
+
+                      </form>
+
+                      <br>
+
+                      <!-- 그리드 검색 버튼 -->
+                      <input type="button" value="등록">
+                      <input type="button" value="삭제">
+
+                      <!-- 그리드 -->
+                      <table width="100%" id="scenario_list">
+                      </table>
+
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+</body>
+
+</html>
